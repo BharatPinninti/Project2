@@ -1,0 +1,43 @@
+package Utility;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelUtils {
+	
+	private static XSSFWorkbook workbook;
+	private static XSSFSheet workSheet;
+	private static XSSFRow xssFROW;
+	private  static XSSFCell cell;
+	
+	public static void setExcelPath( String Path, String SheetName) throws IOException{
+		///Open Excel sheets
+		 FileInputStream file= new FileInputStream(Path);
+		 
+		 //creating workbook Object
+		 workbook = new XSSFWorkbook(file);
+		 
+		 //creating sheets
+		 workSheet= workbook.getSheet(SheetName);
+		 
+	}
+	public static String getData(int row, int col){
+		
+		xssFROW= workSheet.getRow(row);
+		cell = xssFROW.getCell(col);
+		String cellValue = cell.getStringCellValue();
+		return cellValue;
+		
+		
+		
+		
+			}
+
+}
